@@ -62,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function(){
       display.innerHTML += num;
     }
     input += num;
+    display.innerHTML = input;
   }
 
   function opClicked() {
@@ -87,16 +88,19 @@ document.addEventListener("DOMContentLoaded", function(){
   }
 
   function addOperation(op) {
-    if (isNaN(input.slice(-1))) {
-      input = input.slice(0,-1) + op;
-    } else {
-      input += op;
+    if (!(input == "" && (op =="*" || op == "/"))) {
+      if (isNaN(input.slice(-1))) {
+        input = input.slice(0,-1) + op;
+      } else {
+        input += op;
+      }
+      display.innerHTML = input;
     }
   }
 
   function acClicked() {
     input = '';
-    display.innerHTML = "Sparta Calculator";
+    display.innerHTML = "My Calculator";
   }
 
   function eqClicked() {
@@ -104,8 +108,8 @@ document.addEventListener("DOMContentLoaded", function(){
       input = input.slice(0, -1);
     }
     display.innerHTML = eval(input);
-    console.log(input + " = " + eval(input));
     input = '';
+    // input = eval(input);
   }
 
 });
